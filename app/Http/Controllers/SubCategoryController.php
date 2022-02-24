@@ -51,12 +51,15 @@ class SubCategoryController extends Controller
             $subcategory = Category::where('id', $id)->first();
         }
 
-        return view('admin.subcategory.form', compact('subcategory'));
+        $categories = Category::orderBy('name', 'asc')->get();
+
+        return view('admin.subcategory.form', compact('subcategory', 'categories'));
     }
 
     public function store(CategoryRequest $request)
     {
         $this->validate($request, [
+            'category_id' => 'required|int|min:1',
             'name' => 'required|unique:subcategories|max:250|min:4',
             'description' => 'nullable|max:1000|min:4',
             'icon' => 'nullable|max:250|min:4',
@@ -64,6 +67,7 @@ class SubCategoryController extends Controller
         ]);
 
         $request = $request->only([
+            'category_id',
             'name',
             'description',
             'icon',
@@ -72,7 +76,7 @@ class SubCategoryController extends Controller
 
         $subcategory = SubCategory::create($request);
 
-        return redirect('subcategory')->with('message', __('basic.subcategory.created_with_success'));
+        return redirect('subcategory')->with('message', __('subcategory.messages.created_with_success'));
     }
 
     public function show(int $subCategoryId)

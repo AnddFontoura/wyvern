@@ -17,18 +17,31 @@
 
                         <div class="card-body">
                             <div class="form-group">
-                                <label> {{ __('basic.category.form.name') }} </label>
+                                <label> {{ __('category.commons.category') }} </label>
+                                @if(count($categories) > 0)
+                                    <div class="alert alert-danger"> {{ __('subcategory.errors.theres_no_categories_recorded')}} </div>
+                                @else
+                                    <select name="category_id" class="select2"> 
+                                        @foreach($categories as $category)
+                                            <option value="{{ $category->id }}"> {{ $category->name }} </option>
+                                        @endforeach
+                                    </select>
+                                @endif
+                            </div>
+
+                            <div class="form-group">
+                                <label> {{ __('subcategory.form.name') }} </label>
                                 <input type="text" name="name" class="form-control" max-length="250" value="@if(isset($category)){{ $category->name }}@else{{ old('name') }}@endif"></input>
                             </div>
 
                             <div class="form-group">
-                                <label> {{ __('basic.category.form.description') }} </label>
+                                <label> {{ __('subcategory.form.description') }} </label>
                                 <textarea name="description" class='form-control summernote'>@if(isset($category)){!! $category->description !!}@else{{ old('name') }}@endif</textarea>
                             </div>
                         </div>
 
                         <div class="card-footer">
-                            <button type="submit" class="btn @if(isset($category)) btn-warning @else btn-success @endif"> @if(isset($category)){{ __('basic.category.update') }}@else{{ __('basic.category.create') }}@endif</button>
+                            <button type="submit" class="btn @if(isset($category)) btn-warning @else btn-success @endif"> @if(isset($subcategory)){{ __('basic.form.update') }}@else{{ __('basic.form.create') }}@endif {{ __('subcategory.commons.subcategory') }}</button>
                         </div>
                     </div>
                 </form>

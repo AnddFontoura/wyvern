@@ -49,6 +49,8 @@
             'deleted' => 'Deletar registro',
             'filters' => 'Filtros',
             'filter_registers' => 'Filtrar registros',
-            'order-by' => 'Ordenar por'
+            'order-by' => 'Ordenar por',
+            'update' => 'Atualizar',
+            'create' => 'Criar',
         ],
     ];
