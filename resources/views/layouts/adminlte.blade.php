@@ -187,7 +187,7 @@
                         <a href="#" class="nav-link">
                             <i class="nav-icon fas fa-tachometer-alt"></i>
                             <p>
-                                {{ __('basic.category.name') }}
+                                {{ __('category.commons.name_plural') }}
                                 <i class="right fas fa-angle-left"></i>
                             </p>
                         </a>
@@ -195,13 +195,13 @@
                             <li class="nav-item">
                                 <a href="{{ url('admin/category') }}" class="nav-link">
                                     <i class="far fa-circle nav-icon"></i>
-                                    <p> {{ __('basic.category.list') }} </p>
+                                    <p> {{ __('basic.form.list') }} {{ __('category.commons.name') }} </p>
                                 </a>
                             </li>
                             <li class="nav-item">
                                 <a href="{{ url('admin/category/create') }}" class="nav-link">
                                     <i class="far fa-circle nav-icon"></i>
-                                    <p> {{ __('basic.category.create') }} </p>
+                                    <p> {{ __('basic.form.create') }} {{ __('category.commons.name') }} </p>
                                 </a>
                             </li>
                         </ul>
@@ -210,7 +210,7 @@
                         <a href="#" class="nav-link">
                             <i class="nav-icon fas fa-tachometer-alt"></i>
                             <p>
-                                {{ __('basic.subcategory.name') }}
+                                {{ __('subcategory.commons.name_plural') }}
                                 <i class="right fas fa-angle-left"></i>
                             </p>
                         </a>
@@ -218,13 +218,13 @@
                             <li class="nav-item">
                                 <a href="{{ url('admin/subcategory') }}" class="nav-link">
                                     <i class="far fa-circle nav-icon"></i>
-                                    <p> {{ __('basic.subcategory.list') }} </p>
+                                    <p> {{ __('basic.form.list') }} {{ __('subcategory.commons.name') }}</p>
                                 </a>
                             </li>
                             <li class="nav-item">
                                 <a href="{{ url('admin/subcategory/create') }}" class="nav-link">
                                     <i class="far fa-circle nav-icon"></i>
-                                    <p> {{ __('basic.subcategory.create') }} </p>
+                                    <p> {{ __('basic.form.create') }} {{ __('subcategory.commons.name') }}</p>
                                 </a>
                             </li>
                         </ul>

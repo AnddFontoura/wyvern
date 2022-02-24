@@ -12,24 +12,6 @@
             'no_alteration_has_been_made' => 'Nenhuma alteração foi realizada',
             'yes_continue' => 'Sim, continuar',
         ],
-        'category' => [
-            'create' => 'Criar Categoria',
-            'created_with_success' => 'Categoria criada com sucesso',
-            'delete' => 'Deletar Categoria',
-            'deleted_with_success' => 'Categoria deletada com sucesso',
-            'edit' => 'Editar Categoria',
-            'name' => 'Categoria',
-            'name_plural' => 'Categorias',
-            'new_category' => 'Nova Categoria',
-            'none_categories_founded' => 'Nenhuma categoria encontrada',
-            'list' => 'Listar Categoria',
-            'update' => 'Atualizar Categoria',
-            'updated_with_success' => 'Categoria atualizada com sucesso',
-            'form' => [
-                'name' => 'Nome da Categoria',
-                'description' => 'Descrição da Categoria',
-            ],
-        ],
         'parameters' => [
             'list' => [
                 'id' => 'Id',
@@ -52,5 +34,8 @@
             'order-by' => 'Ordenar por',
             'update' => 'Atualizar',
             'create' => 'Criar',
+            'delete' => 'Deletar',
+            'list' => 'Listar',
+            'new' => 'Nova',
         ],
     ];

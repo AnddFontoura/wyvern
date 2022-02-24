@@ -71,7 +71,7 @@ class CategoryController extends Controller
 
         $category = Category::create($request);
 
-        return redirect('category')->with('message', __('basic.category.created_with_success'));
+        return redirect('category')->with('message', __('category.messages.created_with_success'));
     }
 
     public function show(int $categoryId)
@@ -103,7 +103,7 @@ class CategoryController extends Controller
 
         Category::where('id', $categoryId)->update($request);
 
-        return redirect('category')->with('message', __('basic.category.created_with_success'));
+        return redirect('category')->with('message', __('category.messages.created_with_success'));
     }
 
     public function destroy(Request $request): JsonResponse
@@ -115,6 +115,6 @@ class CategoryController extends Controller
         $categoryId = $request->post('id');
         Category::where('id', $categoryId)->delete();
 
-        return response()->json(__('basic.category.deleted_with_success'), Response::HTTP_OK);
+        return response()->json(__('category.messages.deleted_with_success'), Response::HTTP_OK);
     }
 }

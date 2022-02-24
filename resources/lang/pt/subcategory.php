@@ -2,6 +2,8 @@
 
     return [
         'commons' => [
+            'name' => 'Subcategoria',
+            'name_plural' => 'Subcategorias',
             'subcategory' => 'Subcategoria',
         ],
         'errors' => [

@@ -4,7 +4,7 @@
 <div class="container-fluid">
     <div class="row">
         <div class="col-12 mb-3 text-right">
-            <a href="{{ url('admin/category/create') }}" class="btn btn-success"> {{ __('basic.category.create') }} </a>
+            <a href="{{ url('admin/category/create') }}" class="btn btn-success"> {{ __('basic.form.create') }} {{ __('category.commons.name') }} </a>
         </div>
     </div>
 
@@ -22,7 +22,7 @@
                     </div>
 
                     <div class='col-md-3 col-lg-3 col-sm-12'>
-                        <label> {{ __('basic.category.form.name') }} </label>
+                        <label> {{ __('category.form.name') }} </label>
                         <input type="text" name="categoryName" class='form-control'> </input>
                     </div>
 
@@ -53,7 +53,7 @@
 
     <div class='card'>
         <div class='card-header'>
-            {{ __('basic.category.name_plural') }}
+            {{ __('category.commons.name_plural') }}
         </div>
 
         <div class='card-body'>
