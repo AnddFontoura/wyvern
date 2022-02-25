@@ -48,7 +48,7 @@ class SubCategoryController extends Controller
         $subcategory = null;
 
         if ($id) {
-            $subcategory = Category::where('id', $id)->first();
+            $subcategory = SubCategory::where('id', $id)->first();
         }
 
         $categories = Category::orderBy('name', 'asc')->get();
@@ -76,7 +76,7 @@ class SubCategoryController extends Controller
 
         $subcategory = SubCategory::create($request);
 
-        return redirect('subcategory')->with('message', __('subcategory.messages.created_with_success'));
+        return redirect('admin/subcategory')->with('message', __('subcategory.messages.created_with_success'));
     }
 
     public function show(int $subCategoryId)
@@ -93,6 +93,7 @@ class SubCategoryController extends Controller
     public function update(Request $request, int $subCategoryId)
     {
         $this->validate($request, [
+            'category_id' => 'required|int|min:1',
             'name' => 'required|max:250|min:4',
             'description' => 'nullable|max:1000|min:4',
             'icon' => 'nullable|max:250|min:4',
@@ -100,6 +101,7 @@ class SubCategoryController extends Controller
         ]);
 
         $request = $request->only([
+            'category_id',
             'name',
             'description',
             'icon',
@@ -108,7 +110,7 @@ class SubCategoryController extends Controller
 
         SubCategory::where('id', $subCategoryId)->update($request);
 
-        return redirect('subcategory')->with('message', __('basic.subcategory.created_with_success'));
+        return redirect('admin/subcategory')->with('message', __('basic.subcategory.created_with_success'));
     }
 
     public function destroy(Request $request): JsonResponse
