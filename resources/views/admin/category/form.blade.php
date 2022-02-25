@@ -8,6 +8,15 @@
             </div>
 
             <div class='col-12 mb-3'>
+                @if ($errors->any())
+                    <div class="alert alert-danger">
+                        <ul>
+                            @foreach ($errors->all() as $error)
+                                <li>{{ $error }}</li>
+                            @endforeach
+                        </ul>
+                    </div>
+                @endif
                 <form action="{{ url('admin/category/save') }}@if(isset($category))/{{ $category->id }}@endif" method="POST">
                     @csrf
                     <div class="card">

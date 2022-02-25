@@ -15,7 +15,7 @@ class SubCategoryController extends Controller
     {
         $request->all();
 
-        $subCategories = SubCategory::select([
+        $subcategories = SubCategory::select([
             'id',
             'name',
             'created_at',
@@ -23,24 +23,24 @@ class SubCategoryController extends Controller
         ]);
 
         if ($request['withDeleted']) {
-            $subCategories = $subCategories->withTrashed();
+            $subcategories = $subcategories->withTrashed();
         }
 
         if ($request['SubCategoryId']) {
-            $subCategories = $subCategories->where('id', $request['categoryId']);
+            $subcategories = $subcategories->where('id', $request['categoryId']);
         }
 
         if ($request['SubCategoryName']) {
-            $subCategories = $subCategories->where('name', 'like', '%' . $request['categoryName'] . '%');
+            $subcategories = $subcategories->where('name', 'like', '%' . $request['categoryName'] . '%');
         }
 
         if ($request['orderByFieldName']) {
-            $subCategories = $subCategories->orderBy($request['orderByFieldName'], $request['orderByMethod']);
+            $subcategories = $subcategories->orderBy($request['orderByFieldName'], $request['orderByMethod']);
         }
 
-        $subCategories = $subCategories->paginate(20);
+        $subcategories = $subcategories->paginate(20);
 
-        return view('admin.subcategory.index', compact('subCategories'));
+        return view('admin.subcategory.index', compact('subcategories'));
     }
 
     public function create(int $id = null)
@@ -60,7 +60,7 @@ class SubCategoryController extends Controller
     {
         $this->validate($request, [
             'category_id' => 'required|int|min:1',
-            'name' => 'required|unique:subcategories|max:250|min:4',
+            'name' => 'required|unique:sub_categories|max:250|min:4',
             'description' => 'nullable|max:1000|min:4',
             'icon' => 'nullable|max:250|min:4',
             'image' => 'nullabe|mimes:.jpg,.jpeg,.png,.bmp'

@@ -4,7 +4,7 @@
 <div class="container-fluid">
     <div class="row">
         <div class="col-12 mb-3 text-right">
-            <a href="{{ url('admin/subcategory/create') }}" class="btn btn-success"> {{ __('basic.subcategory.create') }} </a>
+            <a href="{{ url('admin/subcategory/create') }}" class="btn btn-success"> {{ __('basic.form.create') }} {{ __('subcategory.commons.name') }}</a>
         </div>
     </div>
 
@@ -22,7 +22,7 @@
                     </div>
 
                     <div class='col-md-3 col-lg-3 col-sm-12'>
-                        <label> {{ __('basic.subcategory.form.name') }} </label>
+                        <label> {{ __('subcategory.commons.name') }} </label>
                         <input type="text" name="subCategoryName" class='form-control'> </input>
                     </div>
 
@@ -46,25 +46,26 @@
 
             <div class="card-footer">
                 <button type="submit" class="btn btn-success"> {{ __('basic.form.filter_registers') }} </button>
-                <a href="{{ url('category') }}" class="btn btn-secondary"> {{ __('basic.form.clear-filters') }} </a>
+                <a href="{{ url('subcategory') }}" class="btn btn-secondary"> {{ __('basic.form.clear-filters') }} </a>
             </div>
         </div>
     </form>
 
     <div class='card'>
         <div class='card-header'>
-            {{ __('basic.subcategory.name_plural') }}
+            {{ __('subcategory.commons.name_plural') }}
         </div>
 
         <div class='card-body'>
-            @if(count($subCategories) == 0)
+            @if(count($subcategories) == 0)
             <div class='alert alert-danger'>
-                {{ __('basic.subcategory.none_categories_founded') }}
+                {{ __('subcategory.errors.none_subcategories_founded') }}
             </div>
             @else
             <table class='table'>
                 <thead>
                     <th> {{ __('basic.parameters.list.id') }} </th>
+                    <th> {{ __('category.commons.name') }} </th>
                     <th> {{ __('basic.parameters.list.name') }} </th>
                     <th> {{ __('basic.parameters.list.created_at') }} </th>
                     <th> {{ __('basic.parameters.list.updated_at') }} </th>
@@ -72,9 +73,10 @@
                 </thead>
 
                 <tbody>
-                    @foreach($subCategories as $subCategory)
+                    @foreach($subcategories as $subCategory)
                     <tr>
                         <td> {{ $subCategory->id }} </td>
+                        <td> {{ $subCategory->category->name ?? null }} </td>
                         <td> {{ $subCategory->name }} </td>
                         <td> {{ $subCategory->created_at->format(__('configuration.date_format')) }} </td>
                         <td> {{ $subCategory->updated_at->format(__('configuration.date_format')) }} </td>
@@ -91,7 +93,7 @@
         </div>
 
         <div class='card-footer'>
-            {{ $subCategories->links() }}
+            {{ $subcategories->links() }}
         </div>
     </div>
 </div>
