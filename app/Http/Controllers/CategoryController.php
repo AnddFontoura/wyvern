@@ -14,12 +14,7 @@ class CategoryController extends Controller
     {
         $request->all();
         
-        $categories = Category::select([
-            'id',
-            'name',
-            'created_at',
-            'updated_at',
-        ]);
+        $categories = Category::select();
         
         if ($request['withDeleted']) {
             $categories = $categories->withTrashed();    

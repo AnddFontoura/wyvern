@@ -15,12 +15,7 @@ class SubCategoryController extends Controller
     {
         $request->all();
 
-        $subcategories = SubCategory::select([
-            'id',
-            'name',
-            'created_at',
-            'updated_at',
-        ]);
+        $subcategories = SubCategory::select();
 
         if ($request['withDeleted']) {
             $subcategories = $subcategories->withTrashed();
