@@ -17,16 +17,20 @@ class SubCategoryController extends Controller
 
         $subcategories = SubCategory::select();
 
-        if ($request['withDeleted']) {
+        if ($request['withDeleted'] == 'on') {
             $subcategories = $subcategories->withTrashed();
         }
 
-        if ($request['SubCategoryId']) {
+        if ($request['categoryId']) {
             $subcategories = $subcategories->where('id', $request['categoryId']);
         }
 
-        if ($request['SubCategoryName']) {
-            $subcategories = $subcategories->where('name', 'like', '%' . $request['categoryName'] . '%');
+        if ($request['subCategoryId']) {
+            $subcategories = $subcategories->where('id', $request['subCategoryId']);
+        }
+
+        if ($request['subCategoryName']) {
+            $subcategories = $subcategories->where('name', 'like', '%' . $request['subCategoryName'] . '%');
         }
 
         if ($request['orderByFieldName']) {
@@ -35,7 +39,9 @@ class SubCategoryController extends Controller
 
         $subcategories = $subcategories->paginate(20);
 
-        return view('admin.subcategory.index', compact('subcategories'));
+        $categories = Category::withTrashed()->get();
+
+        return view('admin.subcategory.index', compact('subcategories','categories'));
     }
 
     public function create(int $id = null)

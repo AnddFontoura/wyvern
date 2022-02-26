@@ -117,61 +117,61 @@
 @section('page_js')
 <script>
     $('#btnDelete').on('click', function() {
-    var id = $(this).data('id');
+        var id = $(this).data('id');
 
-    Swal.fire({
-        title: '{{ __("basic.alert.attention") }}!',
-        text: '{{ __("basic.alert.about_to_delete_category") }}',
-        icon: "warning",
-        showCancelButton: true,
-        confirmButtonColor: '#3085d6',
-        cancelButtonColor: '#d33',
-        confirmButtonText: '{{ __("basic.alert.yes_continue") }}'
-    }).then((result) => {
-        if (result.value) {
-            $.ajaxSetup({
-                headers: {
-                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-                }
-            });
-            var request = $.ajax({
-                url: "{{ url('admin/category/delete') }}",
-                method: "DELETE",
-                data: {
-                    id: id
-                },
-                dataType: "json"
-            });
+        Swal.fire({
+            title: '{{ __("basic.alert.attention") }}!',
+            text: '{{ __("basic.alert.about_to_delete_category") }}',
+            icon: "warning",
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            confirmButtonText: '{{ __("basic.alert.yes_continue") }}'
+        }).then((result) => {
+            if (result.value) {
+                $.ajaxSetup({
+                    headers: {
+                        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                    }
+                });
+                var request = $.ajax({
+                    url: "{{ url('admin/category/delete') }}",
+                    method: "DELETE",
+                    data: {
+                        id: id
+                    },
+                    dataType: "json"
+                });
 
-            request.done(function() {
-                Swal.fire({
-                        title: '{{ __("basic.alert.done") }}',
-                        text: '{{ __("basic.alert.category_deleted") }}',
-                        type: 'success',
-                        buttons: true,
-                    })
-                    .then((buttonClick) => {
-                        if (buttonClick) {
-                            location.reload();
-                        }
-                    });
-            });
+                request.done(function() {
+                    Swal.fire({
+                            title: '{{ __("basic.alert.done") }}',
+                            text: '{{ __("basic.alert.category_deleted") }}',
+                            type: 'success',
+                            buttons: true,
+                        })
+                        .then((buttonClick) => {
+                            if (buttonClick) {
+                                location.reload();
+                            }
+                        });
+                });
 
-            request.fail(function() {
+                request.fail(function() {
+                    Swal.fire(
+                        '{{ __("basic.alert.error") }}',
+                        '{{ __("basic.alert.connection_error") }}',
+                        'error'
+                    )
+                });
+            } else if (result.dismiss === 'cancel') {
                 Swal.fire(
-                    '{{ __("basic.alert.error") }}',
-                    '{{ __("basic.alert.connection_error") }}',
+                    '{{ __("basic.canceled_operation") }}',
+                    '{{ __("basic.no_alteration_has_been_made") }}',
                     'error'
                 )
-            });
-        } else if (result.dismiss === 'cancel') {
-            Swal.fire(
-                '{{ __("basic.canceled_operation") }}',
-                '{{ __("basic.no_alteration_has_been_made") }}',
-                'error'
-            )
-        }
-    });
+            }
+        });
     });
 </script>
 @endsection

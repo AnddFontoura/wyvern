@@ -13,6 +13,10 @@
         'form' => [
             'name' => 'Nome da Subcategoria',
             'description' => 'Descrição da Subcategoria',
+            'filter' => [
+                'id' => 'Id da Subcategoria',
+                'name' => 'Nome da Subcategoria',
+            ],
         ],
         'messages' => [
             'created_with_success' => 'Subcategoria criada com sucesso',

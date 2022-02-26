@@ -3,7 +3,7 @@
     return [
         'alert' => [
             'about_to_delete_category' => 'Você está prestes a deletar uma Categoria, deseja continuar?',
-            'atention' => 'Atenção',
+            'attention' => 'Atenção',
             'canceled_operation' => 'Operação Cancelada',
             'category_deleted' => "Categoria deletada com sucesso",
             'connection_error' => 'Algum problema aconteceu, certifique-se de que a conexão com a internet esteja OK e que você esteja logado no sistema.',
