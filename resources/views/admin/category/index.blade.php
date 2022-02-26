@@ -8,7 +8,7 @@
         </div>
     </div>
 
-    <form action="" method="GET">
+    <form action="{{ url('admin/category') }}" method="GET">
         <div class="card">
             <div class="card-header">
                 {{ __('basic.form.filters') }}
@@ -18,35 +18,40 @@
                 <div class='row'>
                     <div class='col-md-3 col-lg-3 col-sm-12'>
                         <label> {{ __('basic.parameters.list.id') }} </label>
-                        <input type="number" name="categoryId" class='form-control'> </input>
+                        <input type="number" name="categoryId" class='form-control' value="@if(request()->get('categoryId') != ''){{ request()->get('categoryId') }}@endif"> </input>
                     </div>
 
                     <div class='col-md-3 col-lg-3 col-sm-12'>
                         <label> {{ __('category.form.name') }} </label>
-                        <input type="text" name="categoryName" class='form-control'> </input>
+                        <input type="text" name="categoryName" class='form-control' value="@if(request()->get('categoryName') != ''){{ request()->get('categoryName') }}@endif"> </input>
                     </div>
 
                     <div class='col-md-3 col-lg-3 col-sm-12'>
                         <label> {{ __('basic.form.order-by') }} </label>
                         <select name="orderByFieldName" class='form-control'>
-                            <option value='id'> {{ __('basic.parameters.list.id') }} </option>
-                            <option value='name'> {{ __('basic.parameters.list.name') }} </option>
+                            <option value='id' @if(request()->get('orderByFieldName') == 'id') selected @endif> {{ __('basic.parameters.list.id') }} </option>
+                            <option value='name' @if(request()->get('orderByFieldName') == 'name') selected @endif> {{ __('basic.parameters.list.name') }} </option>
                         </select>
                     </div>
 
                     <div class='col-md-3 col-lg-3 col-sm-12'>
                         <label> {{ __('basic.form.order-by') }} </label>
                         <select name="orderByMethod" class='form-control'>
-                            <option value='asc'> {{ __('basic.form.asc') }} </option>
-                            <option value='desc'> {{ __('basic.form.desc') }} </option>
+                            <option value='asc' @if(request()->get('orderByMethod') == 'asc') selected @endif> {{ __('basic.form.asc') }} </option>
+                            <option value='desc' @if(request()->get('orderByMethod') == 'desc') selected @endif> {{ __('basic.form.desc') }} </option>
                         </select>
+                    </div>
+                    
+                    <div class='col-md-3 col-lg-3 col-sm-12'>
+                        <label> {{ __('basic.parameters.list.with_deleted') }} </label>
+                        <input type="checkbox" name="withDeleted" class='form-control' @if(request()->get('withDeleted') == 'on') checked @endif> </input>
                     </div>
                 </div>
             </div>
 
             <div class="card-footer">
                 <button type="submit" class="btn btn-success"> {{ __('basic.form.filter_registers') }} </button>
-                <a href="{{ url('category') }}" class="btn btn-secondary"> {{ __('basic.form.clear-filters') }} </a>
+                <a href="{{ url('admin/category') }}" class="btn btn-secondary"> {{ __('basic.form.clear-filters') }} </a>
             </div>
         </div>
     </form>
@@ -68,6 +73,9 @@
                     <th> {{ __('basic.parameters.list.name') }} </th>
                     <th> {{ __('basic.parameters.list.created_at') }} </th>
                     <th> {{ __('basic.parameters.list.updated_at') }} </th>
+                    @if(request()->get('withDeleted') == 'on') 
+                        <th> {{ __('basic.parameters.list.status') }} </th>
+                    @endif
                     <th class="text-right"> {{ __('basic.parameters.list.options') }}
                 </thead>
 
@@ -78,6 +86,15 @@
                         <td> {{ $category->name }} </td>
                         <td> {{ $category->created_at->format(__('configuration.date_format')) }} </td>
                         <td> {{ $category->updated_at->format(__('configuration.date_format')) }} </td>
+                        @if(request()->get('withDeleted') == 'on') 
+                            <th> 
+                                @if($category->deleted_at != null)
+                                    <div class='btn btn-sm btn-danger w-100'> {{ __('basic.parameters.list.deleted')}} </div>
+                                @else
+                                    <div class='btn btn-sm btn-success w-100'> {{ __('basic.parameters.list.active')}} </div>
+                                @endif
+                            </th>
+                        @endif
                         <td class='text-right'>
                             <a href="{{ url('admin/category/create/' . $category->id) }}" class="btn btn-sm btn-primary" title="{{ __('basic.form.edit') }}"> <i class="far fa-edit"></i> </a>
                             <a href="{{ url('admin/category/view/' . $category->id) }}" class="btn btn-sm btn-secondary" title="{{ __('basic.form.view') }}"> <i class="far fa-eye"></i> </a>
@@ -91,7 +108,7 @@
         </div>
 
         <div class='card-footer'>
-            {{ $categories->links() }}
+            {{ $categories->appends(request()->query())->links() }}
         </div>
     </div>
 </div>

@@ -20,6 +20,10 @@
                 'updated_at' => 'Atualizado em',
                 'deleted_at' => 'Deletado em',
                 'options' => 'Opções',
+                'with_deleted' => 'Incluir Deletados',
+                'deleted' => 'Deletado',
+                'active' => 'Ativo',
+                'status' => 'Status',
             ],
         ],
         'form' => [
