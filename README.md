@@ -22,13 +22,13 @@ Assim como qualquer outro projeto laravel, você deve rodar as migrations e em s
 
 Por enquanto não existem comandos especiais no php artisan pra esse projeto
 
---
+---
 
 ## Testes unitários
 
 Por enquanto não existem testes unitários nesse projeto
 
---
+---
 
 ## Licença
 
