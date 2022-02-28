@@ -229,6 +229,29 @@
                             </li>
                         </ul>
                     </li>
+                    <li class="nav-item has-treeview">
+                        <a href="#" class="nav-link">
+                            <i class="nav-icon fas fa-gifts"></i>
+                            <p>
+                                {{ __('product.commons.name_plural') }}
+                                <i class="right fas fa-angle-left"></i>
+                            </p>
+                        </a>
+                        <ul class="nav nav-treeview">
+                            <li class="nav-item">
+                                <a href="{{ url('admin/product') }}" class="nav-link">
+                                    <i class="far fa-circle nav-icon"></i>
+                                    <p> {{ __('basic.form.list') }} {{ __('product.commons.name') }}</p>
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="{{ url('admin/product/create') }}" class="nav-link">
+                                    <i class="far fa-circle nav-icon"></i>
+                                    <p> {{ __('basic.form.create') }} {{ __('product.commons.name') }}</p>
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
                 </ul>
             </nav>
             <!-- /.sidebar-menu -->
@@ -301,7 +324,9 @@
 <script>
     $(function () {
         // Summernote
-        $('.summernote').summernote();
+        $('.summernote').summernote({
+            height: 120,
+        });
 
         //Initialize Select2 Elements
         $('.select2').select2({

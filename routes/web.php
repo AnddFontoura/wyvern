@@ -39,4 +39,14 @@ Route::middleware('auth')->prefix('admin')->group(function () {
         Route::get('view/{id}','SubCategoryController@show');
         Route::delete('delete', 'SubCategoryController@destroy');
     });
+
+    Route::prefix('product')->group( function(){
+        Route::match(['post','get'],'/','ProductController@index');
+        Route::get('create','ProductController@create');
+        Route::get('create/{id}','ProductController@create');
+        Route::post('save','ProductController@store');
+        Route::post('save/{id}','ProductController@update');
+        Route::get('view/{id}','ProductController@show');
+        Route::delete('delete', 'ProductController@destroy');
+    });
 });
