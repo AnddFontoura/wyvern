@@ -42,7 +42,7 @@
                                     
                                     <div class="form-group">
                                         <label> {{ __('product.form.name') }} </label>
-                                        <input required type="text" name="name" class="form-control" max-length="250" value="@if(isset($product)){{ $product->name }}@else{{ old('name') }}@endif"></input>
+                                        <input placeholder="" required type="text" name="name" class="form-control" max-length="250" value="@if(isset($product)){{ $product->name }}@else{{ old('name') }}@endif"></input>
                                     </div>
                                     
                                     <div class="form-group">
@@ -70,25 +70,25 @@
                                     <div class="row mb-0">
                                         <div class="col-md-6 col-lg-6 col-sm-12">
                                             <div class="form-group">
-                                                <label> {{ __('product.form.weight') }} </label>
-                                                <input type="text" name="weight" class="form-control" max-length="13" value="@if(isset($product)){{ $product->weight }}@else{{ old('weight') }}@endif"></input>
+                                                <label> {{ __('product.form.weight') }} ({{ __('basic.helper.grams_short') }})  </label>
+                                                <input pattern="[0-9]{1,12}" placeholder="00000" type="text" name="weight" class="form-control" max-length="13" value="@if(isset($product)){{ $product->weight }}@else{{ old('weight') }}@endif"></input>
                                             </div>
 
                                             <div class="form-group">
-                                                <label> {{ __('product.form.width') }} </label>
-                                                <input type="text" name="width" class="form-control" max-length="13" value="@if(isset($product)){{ $product->width }}@else{{ old('width') }}@endif"></input>
+                                                <label> {{ __('product.form.width') }} ({{ __('basic.helper.centimeters_short') }}) </label>
+                                                <input pattern="[0-9]{1,12}"  placeholder="00000" type="text" name="width" class="form-control" max-length="13" value="@if(isset($product)){{ $product->width }}@else{{ old('width') }}@endif"></input>
                                             </div>
                                         </div>
                                         
                                         <div class="col-md-6 col-lg-6 col-sm-12">
                                             <div class="form-group">
-                                                <label> {{ __('product.form.height') }} </label>
-                                                <input type="text" name="height" class="form-control" max-length="13" value="@if(isset($product)){{ $product->height }}@else{{ old('height') }}@endif"></input>
+                                                <label> {{ __('product.form.height') }} ({{ __('basic.helper.centimeters_short') }}) </label>
+                                                <input pattern="[0-9]{1,12}"  placeholder="00000" type="text" name="height" class="form-control" max-length="13" value="@if(isset($product)){{ $product->height }}@else{{ old('height') }}@endif"></input>
                                             </div>
 
                                             <div class="form-group">
-                                                <label> {{ __('product.form.depth') }} </label>
-                                                <input type="text" name="depth" class="form-control" max-length="13" value="@if(isset($product)){{ $product->depth }}@else{{ old('depth') }}@endif"></input>
+                                                <label> {{ __('product.form.depth') }} ({{ __('basic.helper.centimeters_short') }}) </label>
+                                                <input pattern="[0-9]{1,12}" placeholder="00000" type="text" name="depth" class="form-control" max-length="13" value="@if(isset($product)){{ $product->depth }}@else{{ old('depth') }}@endif"></input>
                                             </div>
                                         </div>
                                     </div>
@@ -96,7 +96,7 @@
 
                                 <div class="col-12">
                                     <label> {{ __('product.form.price') }} </label>
-                                    <input type="text" name="price" class="form-control" max-length="13" value="@if(isset($product)){{ $product->price }}@else{{ old('price') }}@endif"></input>
+                                    <input pattern="[0-9]{1,12}{{ __('basic.configuration.decimal_signal') }}[0-9]{2}" placeholder="0000{{ __('basic.configuration.decimal_signal') }}00" type="text" name="price" class="form-control" max-length="13" value="@if(isset($product)){{ $product->price }}@else{{ old('price') }}@endif"></input>
                                 </div>
                             </div>
                         </div>

@@ -10,6 +10,7 @@
             'none_products_founded' => 'Nenhum produto encontrado',
         ],
         'form' => [
+            'price' => 'Preço',
             'weight' => 'Peso',
             'height' => 'Altura',
             'width' => 'Largura',

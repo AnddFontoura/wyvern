@@ -42,4 +42,18 @@
             'list' => 'Listar',
             'new' => 'Nova',
         ],
+        'configuration' => [
+            'decimal_signal' => ',',
+            'miliar_signal' => '.',
+            'date_format' => 'd/m/Y',
+            'datetime_format' => 'd/m/Y h:i:s',
+        ],
+        'helper' => [
+            'centimeters' => 'Centímetros',
+            'centimeters_short' => 'cm',
+            'kilo' => 'Kilogramas',
+            'kilo_short' => 'Kg',
+            'grams' => 'Gramas',
+            'grams_short' => 'g',
+        ]
     ];

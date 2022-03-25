@@ -65,11 +65,11 @@ class ProductController extends Controller
             'description' => 'nullable|string|min:1|max:10000',
             'isbn' => 'nullable|string|min:1|max:100',
             'codebar' => 'nullable|string|min:1|max:100',
-            'weight' => 'nullable|float:12,3',
-            'width' => 'nullable|float:12,2',
-            'height' => 'nullable|float:12,2',
-            'depth' => 'nullable|float:12,2',
-            'price'  => 'nullable|float:12,2',
+            'weight' => 'nullable|integer',
+            'width' => 'nullable|integer',
+            'height' => 'nullable|integer',
+            'depth' => 'nullable|integer',
+            'price'  => 'nullable|integer',
         ]);
 
         $request = $request->only([
@@ -86,7 +86,7 @@ class ProductController extends Controller
             'price',
         ]);
 
-        $subcategory = SubCategory::create($request);
+        $product = Product::create($request);
 
         return redirect('admin/product')->with('message', __('product.messages.created_with_success'));
     }
