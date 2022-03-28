@@ -79,6 +79,13 @@
                 </div>
             @endif
 
+            @php
+                $categories = Helper::getCategories();
+            @endphp
+
+            @foreach($categories as $category)
+
+            @endforeach
             <div class="content">
               @yield('site_content')
             </div>
