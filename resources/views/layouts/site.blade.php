@@ -8,87 +8,49 @@
 
         <!-- Fonts -->
         <link href="https://fonts.googleapis.com/css?family=Nunito:200,600" rel="stylesheet">
-
-        <!-- Styles -->
-        <style>
-            html, body {
-                background-color: #fff;
-                color: #636b6f;
-                font-family: 'Nunito', sans-serif;
-                font-weight: 200;
-                height: 100vh;
-                margin: 0;
-            }
-
-            .full-height {
-                height: 100vh;
-            }
-
-            .flex-center {
-                align-items: center;
-                display: flex;
-                justify-content: center;
-            }
-
-            .position-ref {
-                position: relative;
-            }
-
-            .top-right {
-                position: absolute;
-                right: 10px;
-                top: 18px;
-            }
-
-            .content {
-                text-align: center;
-            }
-
-            .title {
-                font-size: 84px;
-            }
-
-            .links > a {
-                color: #636b6f;
-                padding: 0 25px;
-                font-size: 13px;
-                font-weight: 600;
-                letter-spacing: .1rem;
-                text-decoration: none;
-                text-transform: uppercase;
-            }
-
-            .m-b-md {
-                margin-bottom: 30px;
-            }
-        </style>
+        <link href="{{ asset('bootstrap/css/bootstrap.min.css') }}" rel="stylesheet"></link>        
     </head>
     <body>
-        <div class="flex-center position-ref full-height">
-            @if (Route::has('login'))
-                <div class="top-right links">
-                    @auth
-                        <a href="{{ url('/home') }}">Home</a>
-                    @else
-                        <a href="{{ route('login') }}">Login</a>
-
-                        @if (Route::has('register'))
-                            <a href="{{ route('register') }}">Register</a>
-                        @endif
-                    @endauth
-                </div>
-            @endif
-
-            @php
-                $categories = Helper::getCategories();
-            @endphp
-
-            @foreach($categories as $category)
-
-            @endforeach
-            <div class="content">
-              @yield('site_content')
+        <div class="container">
+            <header class="d-flex flex-wrap justify-content-center py-3 border-bottom">
+            <div href="/" class="d-flex align-items-center mb-3 mb-md-0 me-md-auto text-dark text-decoration-none">
             </div>
+
+            <ul class="nav nav-pills">
+                @auth
+                    <li class="nav-item"><a href="{{ route('logout') }}" class="nav-link">Logout</a></li>
+                @else
+                    <li class="nav-item"><a href="{{ route('login') }}" class="nav-link">Login</a></li>
+                    <li class="nav-item"><a href="{{ route('register') }}" class="nav-link">Register</a></li>
+                @endauth
+            </ul>
+            </header>
         </div>
+
+        @php
+            $categories = Helper::getCategories();
+        @endphp
+        <div class="container">
+            <header class="d-flex flex-wrap justify-content-center py-3 mb-4 border-bottom">
+            <a href="/" class="d-flex align-items-center mb-3 mb-md-0 me-md-auto text-dark text-decoration-none">
+                <svg class="bi me-2" width="40" height="32"><use xlink:href="#bootstrap"></use></svg>
+                <span class="fs-4">Simple header</span>
+            </a>
+
+            <ul class="nav nav-pills">
+                <li class="nav-item"><a href="#" class="nav-link">Home</a></li>
+                @foreach($categories as $category)
+                    <!--li class="nav-item"><a href="#" class="nav-link active" aria-current="page">Home</a></li-->
+                    <li class="nav-item"><a href="#" class="nav-link">{{ $category->name }}</a></li>
+                @endforeach
+            </ul>
+            </header>
+        </div>
+
+        <div class="container">
+            @yield('site_content')
+        </div>
+
+        <style src="{{ asset('bootstrap/js/bootstrapp.js') }}"></style>
     </body>
 </html>
