@@ -10,4 +10,5 @@ class Helper
     {
         return Category::get();
     }
+
 }

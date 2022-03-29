@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Product;
 use Illuminate\Contracts\Support\Renderable;
 use Illuminate\Http\Request;
 
@@ -14,7 +15,7 @@ class HomeController extends Controller
      */
     public function __construct()
     {
-        $this->middleware('auth');
+        //$this->middleware('auth');
     }
 
     /**
@@ -26,6 +27,8 @@ class HomeController extends Controller
     {
         $page_title =  "Dashboard";
 
-        return view('home',compact('page_title'));
+        $products = Product::paginate(20);
+
+        return view('welcome',compact('products', 'page_title'));
     }
 }
