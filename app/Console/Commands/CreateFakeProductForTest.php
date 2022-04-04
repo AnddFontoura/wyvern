@@ -42,9 +42,9 @@ class CreateFakeProductForTest extends Command
         $category = SubCategory::count('id');
 
         if ($category == 0) {
-            $this->info('Nenhuma sub categoria encontrada, vamos criar para evitar BUGS');
-            $this->call('command:create-fake-sub-category-for-test 5');
-            $this->info('Agora criar produtos');
+            $this->info('\n Nenhuma sub categoria encontrada, vamos criar para evitar BUGS');
+            $this->call('command:create-fake-sub-category-for-test', ['amount' => 5]);
+            $this->info('\n Agora criar produtos');
         }
 
         $amount = $this->argument('amount');
