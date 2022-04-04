@@ -55,5 +55,10 @@
             'kilo_short' => 'Kg',
             'grams' => 'Gramas',
             'grams_short' => 'g',
+        ],
+        'numerals' => [
+            'decimal_separator' => ',',
+            'thousand_separator' => '.',
+            'currency_symbol' => 'R$'
         ]
     ];
