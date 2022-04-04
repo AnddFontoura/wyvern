@@ -42,9 +42,9 @@ class CreateFakeSubCategoryForTest extends Command
         $category = Category::count('id');
 
         if ($category == 0) {
-            $this->info('Nenhuma categoria encontrada, vamos criar para evitar BUGS');
-            $this->call('command:create-fake-category-for-test 5');
-            $this->info('Agora criar subcategorias');
+            $this->info('\n Nenhuma categoria encontrada, vamos criar para evitar BUGS');
+            $this->call('command:create-fake-category-for-test', ['amount' => 5]);
+            $this->info('\n Agora criar subcategorias');
         }
 
         $amount = $this->argument('amount');
