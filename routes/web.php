@@ -44,4 +44,13 @@ Route::middleware('auth')->prefix('admin')->group(function () {
         Route::get('view/{id}','ProductController@show');
         Route::delete('delete', 'ProductController@destroy');
     });
+    
+    Route::prefix('product-image')->group( function(){
+        Route::match(['post','get'],'/','ProductImageController@index');
+        Route::get('create','ProductImageController@create');
+        Route::get('create/{id}','ProductImageController@create');
+        Route::post('save/{id}','ProductImageController@store');
+        Route::get('view/{id}','ProductImageController@show');
+        Route::delete('delete', 'ProductImageController@destroy');
+    });
 });

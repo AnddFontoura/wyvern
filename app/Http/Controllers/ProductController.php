@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Product;
+use App\ProductImage;
 use App\SubCategory;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
@@ -46,14 +47,16 @@ class ProductController extends Controller
     public function create(int $id = null)
     {
         $product = null;
+        $productImages = null;
 
         if ($id) {
             $product = Product::where('id', $id)->first();
+            $productImages = ProductImage::where('product_id', $id)->get();
         }
 
         $subcategories = SubCategory::withTrashed()->orderBy('name', 'asc')->get();
 
-        return view('admin.product.form', compact('subcategories', 'product'));
+        return view('admin.product.form', compact('subcategories', 'product', 'productImages'));
     }
 
     public function store(Request $request)

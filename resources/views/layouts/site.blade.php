@@ -20,6 +20,7 @@
 
             <ul class="nav nav-pills">
                 @auth
+                    <li class="nav-item"><a href="{{ url('admin/category') }}" class="nav-link"> Admin </a></li>
                     <li class="nav-item"><a href="{{ route('logout') }}" class="nav-link">Logout</a></li>
                 @else
                     <li class="nav-item"><a href="{{ route('login') }}" class="nav-link">Login</a></li>

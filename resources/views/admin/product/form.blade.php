@@ -108,5 +108,48 @@
                 </form>
             </div>
         </div>
+
+        @if(isset($product))
+            <form action="{{ url('admin/product-image/save/' . $product->id) }}" method="POST" enctype="multipart/form-data">
+                @csrf
+                <div class="card">
+                    <div class="card-header">
+                        {{ __('product_image.commons.product_image')}}
+                    </div>
+
+                    <div class="card-body">
+                        <div class='row m-0'>
+                            <div class="col-md-6 col-lg-6 col-sm-12">
+                                <div class="form-group">
+                                    <label> Nova imagem </label>
+                                    <input type="file" class="form-control" name="productImage"></input>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="card-footer">
+                        <button type="submit" class="btn btn-success"> {{ __('basic.form.update') }} {{ __('product_image.commons.name') }}</button>
+                    </div>
+                </div>
+            </form>
+
+            @if(count($productImages) > 0)
+            <div class="card">
+                <div class="card-body">
+                    <div class="row">
+                        @foreach($productImages as $productImage)
+                            @php
+                                $path = env('APP_URL') . env('APP_PUBLIC_PATH') . '/storage/' . $productImage['path'];
+                            @endphp
+                            <div class="col-md-4 col-lg-4 col-sm-12 mb-3">
+                                <img class='w-100 img' src="{{ $path }}"> </img>
+                            </div>        
+                        @endforeach
+                    </div>
+                </div>
+            </div>
+            @endif
+        @endif
     </div>
 @endsection
