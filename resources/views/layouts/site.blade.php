@@ -8,7 +8,8 @@
 
         <!-- Fonts -->
         <link href="https://fonts.googleapis.com/css?family=Nunito:200,600" rel="stylesheet">
-        <link href="{{ asset('bootstrap/css/bootstrap.min.css') }}" rel="stylesheet"></link>        
+        <link href="{{ asset('bootstrap/css/bootstrap.min.css') }}" rel="stylesheet"></link>
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui@4.0/dist/fancybox.css"/>        
     </head>
     <body>
         <div class="container ">
@@ -113,5 +114,6 @@
             </div>
 
         <style src="{{ asset('bootstrap/js/bootstrapp.js') }}"></style>
+        <script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui@4.0/dist/fancybox.umd.js"></script>
     </body>
 </html>

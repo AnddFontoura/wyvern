@@ -14,7 +14,22 @@ Auth::routes();
 
 Route::get('/', 'HomeController@index')->name('home');
 
+Route::prefix('category')->group( function() {
+    Route::match(['post','get'],'{id}','HomeController@showCategoryProducts');
+});
+
+Route::prefix('subcategory')->group( function() {
+    Route::match(['post','get'],'{id}','HomeController@showSubCategoryProducts');
+});
+
+Route::prefix('product')->group( function() {
+    Route::match(['post','get'],'{id}','HomeController@showProduct');
+});
+
 Route::middleware('auth')->prefix('admin')->group(function () {
+
+    Route::match(['post', 'get'], '/', 'AdminController@index');
+
     Route::prefix('category')->group( function(){
         Route::match(['post','get'],'/','CategoryController@index');
         Route::get('create','CategoryController@create');

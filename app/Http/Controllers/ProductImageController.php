@@ -37,9 +37,12 @@ class ProductImageController extends Controller
     {
         $this->validate($request, [
             'productImage' => 'required', //mimes:jpg,jpeg,png,JPEG,JPG,PNG
-            'productImageName' => 'nullable|string|min:1|max:250',
-            'productImageDescription' => 'nullable|string|min:1|max:250'
+            'name' => 'nullable|string|min:1|max:250',
+            'description' => 'nullable|string|min:1|max:250'
         ]);
+
+        $productImageName = $request->post('name') ?? '';
+        $productImageDescription = $request->post('description') ?? '';
 
         if ($request->file('productImage')) {
             $fileDir = 'product-image';
@@ -50,6 +53,8 @@ class ProductImageController extends Controller
             $product = ProductImage::create([
                 'product_id' => $productId,
                 'path' => $fileName,
+                'name' => $productImageName,
+                'description' => $productImageDescription,
             ]);
         }
 

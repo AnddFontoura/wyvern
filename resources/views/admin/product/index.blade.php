@@ -98,7 +98,7 @@
                         <td class='text-right'>
                             <a href="{{ url('admin/product/create/' . $product->id) }}" class="btn btn-sm btn-primary" title="{{ __('basic.form.edit') }}"> <i class="far fa-edit"></i> </a>
                             <a href="{{ url('admin/product/view/' . $product->id) }}" class="btn btn-sm btn-secondary" title="{{ __('basic.form.view') }}"> <i class="far fa-eye"></i> </a>
-                            <button id='btnDelete' class="btn btn-sm btn-danger" title="{{ __('basic.form.delete') }}" data-id="{{ $product->id }}"> <i class="far fa-trash-alt"></i> </button>
+                            <button class="btn btn-sm btn-danger btnDelete" title="{{ __('basic.form.delete') }}" data-id="{{ $product->id }}"> <i class="far fa-trash-alt"></i> </button>
                         </td>
                     </tr>
                     @endforeach
@@ -116,7 +116,7 @@
 
 @section('page_js')
 <script>
-    $('#btnDelete').on('click', function() {
+    $('.btnDelete').on('click', function() {
         var id = $(this).data('id');
 
         Swal.fire({

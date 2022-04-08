@@ -114,22 +114,36 @@
                 @csrf
                 <div class="card">
                     <div class="card-header">
-                        {{ __('product_image.commons.product_image')}}
+                        {{ __('product_image.commons.new_product_image')}}
                     </div>
 
                     <div class="card-body">
                         <div class='row m-0'>
-                            <div class="col-md-6 col-lg-6 col-sm-12">
+                            <div class="col-md-12 col-lg-12 col-sm-12 mb-3">
                                 <div class="form-group">
-                                    <label> Nova imagem </label>
+                                    <label> {{ __('product_image.commons.name') }} </label>
                                     <input type="file" class="form-control" name="productImage"></input>
+                                </div>
+                            </div>
+
+                            <div class="col-md-6 col-lg-6 col-sm-12 mb-3">
+                                <div class="form-group">
+                                    <label> {{ __('product_image.form.name') }} </label>
+                                    <input type="text" class="form-control" name="name"></input>
+                                </div>
+                            </div>
+
+                            <div class="col-md-6 col-lg-6 col-sm-12 mb-3">
+                                <div class="form-group">
+                                    <label> {{ __('product_image.form.description') }} </label>
+                                    <textarea type="file" class="form-control" name="description"></textarea>
                                 </div>
                             </div>
                         </div>
                     </div>
                     
                     <div class="card-footer">
-                        <button type="submit" class="btn btn-success"> {{ __('basic.form.update') }} {{ __('product_image.commons.name') }}</button>
+                        <button type="submit" class="btn btn-success"> {{ __('basic.form.create') }} {{ __('product_image.commons.name') }}</button>
                     </div>
                 </div>
             </form>
@@ -140,11 +154,12 @@
                     <div class="row">
                         @foreach($productImages as $productImage)
                             @php
-                                $path = env('APP_URL') . env('APP_PUBLIC_PATH') . '/storage/' . $productImage['path'];
+                                $path = env('APP_URL') . env('APP_PUBLIC_PATH') . 'storage/' . $productImage['path'];
                             @endphp
                             <div class="col-md-4 col-lg-4 col-sm-12 mb-3">
-                                <img class='w-100 img' src="{{ $path }}"> </img>
-                            </div>        
+                                <img class='w-100 img mb-3' src="{{ $path }}"  data-fancybox="images-{{ $productImage->product_id }}" data-caption="{{ $productImage->name }} <p> {{ $productImage->description }} </p>"> </img>
+                                <button class="btn btn-danger w-100 btnDelete" data-id="{{ $productImage->product_id }}"> {{ __('basic.form.delete') }} {{ __('product_image.commons.name') }} </button>
+                            </div>
                         @endforeach
                     </div>
                 </div>
@@ -152,4 +167,66 @@
             @endif
         @endif
     </div>
+@endsection
+
+@section('page_js')
+    <script>
+        $('.btnDelete').on('click', function() {
+        var id = $(this).data('id');
+
+        Swal.fire({
+            title: '{{ __("basic.alert.attention") }}!',
+            text: '{{ __("basic.alert.about_to_delete_product_image") }}',
+            icon: "warning",
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            confirmButtonText: '{{ __("basic.alert.yes_continue") }}'
+        }).then((result) => {
+            if (result.value) {
+                $.ajaxSetup({
+                    headers: {
+                        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                    }
+                });
+                var request = $.ajax({
+                    url: "{{ url('admin/product-image/delete') }}",
+                    method: "DELETE",
+                    data: {
+                        id: id
+                    },
+                    dataType: "json"
+                });
+
+                request.done(function() {
+                    Swal.fire({
+                            title: '{{ __("basic.alert.done") }}',
+                            text: '{{ __("basic.alert.product_image_deleted") }}',
+                            type: 'success',
+                            buttons: true,
+                        })
+                        .then((buttonClick) => {
+                            if (buttonClick) {
+                                location.reload();
+                            }
+                        });
+                });
+
+                request.fail(function() {
+                    Swal.fire(
+                        '{{ __("basic.alert.error") }}',
+                        '{{ __("basic.alert.connection_error") }}',
+                        'error'
+                    )
+                });
+            } else if (result.dismiss === 'cancel') {
+                Swal.fire(
+                    '{{ __("basic.canceled_operation") }}',
+                    '{{ __("basic.no_alteration_has_been_made") }}',
+                    'error'
+                )
+            }
+        });
+    });
+    </script>
 @endsection

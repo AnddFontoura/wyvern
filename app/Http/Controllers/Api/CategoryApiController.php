@@ -10,5 +10,10 @@ use Illuminate\Http\Response;
 
 class CategoryApiController extends Controller
 {
-    
+    public function countCategories()
+    {
+        $countCategories = Category::count('id');
+
+        return response()->json(['countCategories' => $countCategories], Response::HTTP_OK);
+    }
 }

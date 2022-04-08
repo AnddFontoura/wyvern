@@ -3,6 +3,7 @@
 namespace App\Http\Helpers;
 
 use App\Category;
+use App\ProductImage;
 
 class Helper 
 {
@@ -11,4 +12,8 @@ class Helper
         return Category::get();
     }
 
+    public static function getOneImageForProduct($productId) 
+    {
+        return ProductImage::where('product_id', $productId)->first();
+    }
 }

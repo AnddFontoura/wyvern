@@ -60,5 +60,8 @@
             'decimal_separator' => ',',
             'thousand_separator' => '.',
             'currency_symbol' => 'R$'
-        ]
+        ],
+        'site' => [
+            'purchase' => 'Comprar',
+        ],
     ];

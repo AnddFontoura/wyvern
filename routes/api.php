@@ -16,3 +16,15 @@ use Illuminate\Http\Request;
 Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
+
+Route::prefix('categories')->group( function(){
+    Route::get('count','Api\CategoryApiController@countCategories');
+});
+
+Route::prefix('subcategories')->group( function(){
+    Route::get('count','Api\SubCategoryApiController@countSubCategories');
+});
+
+Route::prefix('products')->group( function(){
+    Route::get('count','Api\ProductApiController@countProducts');
+});
