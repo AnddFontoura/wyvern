@@ -102,7 +102,7 @@ class ProductController extends Controller
             $product =  Product::where('id', $productId)->first();
         }
 
-        return view('admin.subcategory.view', compact('product'));
+        return view('admin.product.view', compact('product'));
     }
 
     public function update(Request $request, int $productId)
@@ -114,11 +114,11 @@ class ProductController extends Controller
             'description' => 'nullable|string|min:1|max:10000',
             'isbn' => 'nullable|string|min:1|max:100',
             'codebar' => 'nullable|string|min:1|max:100',
-            'weight' => 'nullable|float:12,3',
-            'width' => 'nullable|float:12,2',
-            'height' => 'nullable|float:12,2',
-            'depth' => 'nullable|float:12,2',
-            'price'  => 'nullable|float:12,2',
+            'weight' => 'nullable|integer',
+            'width' => 'nullable|integer',
+            'height' => 'nullable|integer',
+            'depth' => 'nullable|integer',
+            'price'  => 'nullable|integer',
         ]);
 
         $request = $request->only([

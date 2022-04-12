@@ -4,8 +4,8 @@
     <div class='container-fluid'>
         <div class='row'>
             <div class='col-12 text-right mb-3'>
-                <a href="{{ url('admin/category/create/'.$category->id) }}" class="btn btn-success"> {{ __('basic.form.edit') }} {{ __('category.commons.name') }} </a>
-                <a href="{{ url('admin/category') }}" class="btn btn-primary"> {{ __('basic.form.list') }} {{ __('category.commons.name') }} </a>
+                <a href="{{ url('admin/product/create/'.$product->id) }}" class="btn btn-success"> {{ __('basic.form.edit') }} {{ __('product.commons.name') }} </a>
+                <a href="{{ url('admin/product') }}" class="btn btn-primary"> {{ __('basic.form.list') }} {{ __('product.commons.name') }} </a>
             </div>
         </div>
 
@@ -14,12 +14,12 @@
                 <div class="card-body">
                     <div class="form-group">
                         <label> {{ __('category.commons.name') }} </label>
-                        <p> {{ $category->name }} <p>
+                        <p> {{ $product->name }} <p>
                     </div>
 
                     <div class="form-group">
                         <label> {{ __('category.form.description') }} </label>
-                        <p> {!! $category->description !!} </p>
+                        <p> {!! $product->description !!} </p>
                     </div>
                 </div>
             </div>

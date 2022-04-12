@@ -30,6 +30,16 @@ Route::middleware('auth')->prefix('admin')->group(function () {
 
     Route::match(['post', 'get'], '/', 'AdminController@index');
 
+    Route::prefix('user')->group( function(){
+        Route::match(['post','get'],'/','UserController@index');
+        Route::get('create','UserController@create');
+        Route::get('create/{id}','UserController@create');
+        Route::post('save','UserController@store');
+        Route::post('save/{id}','UserController@update');
+        Route::get('view/{id}','UserController@show');
+        Route::delete('delete', 'UserController@destroy');
+    });
+
     Route::prefix('category')->group( function(){
         Route::match(['post','get'],'/','CategoryController@index');
         Route::get('create','CategoryController@create');

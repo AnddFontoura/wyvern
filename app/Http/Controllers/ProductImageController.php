@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\ProductImage;
 use Illuminate\Http\Request;
+use Illuminate\Http\Response;
 
 class ProductImageController extends Controller
 {
@@ -101,8 +102,15 @@ class ProductImageController extends Controller
      * @param  \App\ProductImage  $productImage
      * @return \Illuminate\Http\Response
      */
-    public function destroy(ProductImage $productImage)
+    public function destroy(Request $request)
     {
-        //
+        $this->validate($request, [
+            'id' => 'required|int|min:1'
+        ]);
+
+        $productImageId = $request->post('id');
+        $productImage = ProductImage::where('id', $productImageId)->delete();
+
+        return response()->json(['message' => __('product_image.messages.deleted_with_success')], Response::HTTP_OK);
     }
 }

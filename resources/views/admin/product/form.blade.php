@@ -158,7 +158,7 @@
                             @endphp
                             <div class="col-md-4 col-lg-4 col-sm-12 mb-3">
                                 <img class='w-100 img mb-3' src="{{ $path }}"  data-fancybox="images-{{ $productImage->product_id }}" data-caption="{{ $productImage->name }} <p> {{ $productImage->description }} </p>"> </img>
-                                <button class="btn btn-danger w-100 btnDelete" data-id="{{ $productImage->product_id }}"> {{ __('basic.form.delete') }} {{ __('product_image.commons.name') }} </button>
+                                <button class="btn btn-danger w-100 btnDelete" data-id="{{ $productImage->id }}"> {{ __('basic.form.delete') }} {{ __('product_image.commons.name') }} </button>
                             </div>
                         @endforeach
                     </div>
