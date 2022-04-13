@@ -15,7 +15,9 @@ class CreateOrderStatusTable extends Migration
     {
         Schema::create('order_status', function (Blueprint $table) {
             $table->bigIncrements('id');
+            $table->string('name', 250)->nullable(false);
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 

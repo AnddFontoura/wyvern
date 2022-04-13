@@ -28,19 +28,20 @@
         ],
         'form' => [
             'asc' => 'Crescente',
+            'create' => 'Criar',
             'clear-filters' => 'Limpar filtros',
+            'delete' => 'Deletar',
             'desc' => 'Decrescente',
             'edit' => 'Editar',
             'view' => 'Visualizar',
-            'deleted' => 'Deletar',
             'filters' => 'Filtros',
             'filter_registers' => 'Filtrar registros',
+            'list' => 'Listar',
+            'more' => 'Ver mais',
+            'new' => 'Nova',
             'order-by' => 'Ordenar por',
             'update' => 'Atualizar',
-            'create' => 'Criar',
-            'delete' => 'Deletar',
-            'list' => 'Listar',
-            'new' => 'Nova',
+            'deleted' => 'Deletar',
         ],
         'configuration' => [
             'decimal_signal' => ',',
@@ -62,6 +63,7 @@
             'currency_symbol' => 'R$'
         ],
         'site' => [
+            'add_to_cart' => 'Adicionar ao Carrinho',
             'purchase' => 'Comprar',
         ],
     ];

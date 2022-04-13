@@ -61,7 +61,7 @@
                                 <hr>
                                 
                                 <div class="col-12 text-center">
-                                    <a href="{{ url('product/' . $product->id) }}" class='btn btn-lg w-100 btn-success'> {{ __('basic.site.purchase') }} </a>
+                                    <button type="button" data-id="{{ $product->id }}" class='btn btn-lg w-100 btn-success btnAddToCart'> {{ __('basic.site.add_to_cart') }} </button>
                                 </div>
                             </div>
                         </div> 
@@ -71,4 +71,32 @@
         </div>
     @endif
 
+@endsection
+
+@section('page_js')
+    <script>
+        $('.btnAddToCart').on('click', function() {
+            let productId = $(this).data('id');
+            let products = new Array();
+            
+            if (localStorage.hasOwnProperty('products')) {
+                products = JSON.parse(localStorage.getItem('products'));
+            }
+
+            if($.inArray(productId, products) == -1) {
+                products.push(productId);
+                localStorage.setItem('products', JSON.stringify(products));
+
+                alert('produto adicionado ao carrinho');
+            } else {
+                localStorage.setItem('products', JSON.stringify(products));
+
+                alert("produto já adicionado ao carrinho");
+            }
+
+            console.log("Produtos");
+            console.log(products);
+            activateCart();
+        });
+    </script>
 @endsection
