@@ -14,6 +14,10 @@ Auth::routes();
 
 Route::get('/', 'HomeController@index')->name('home');
 
+Route::prefix('cart')->group( function() {
+    Route::get('/','HomeController@cart');
+});
+
 Route::prefix('category')->group( function() {
     Route::match(['post','get'],'{id}','HomeController@showCategoryProducts');
 });

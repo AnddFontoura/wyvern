@@ -2,14 +2,14 @@
 function activateCart()
 {
     if (localStorage.hasOwnProperty('products')) {
-        products = JSON.parse(localStorage.getItem('products'));
-    
-        console.log("product lenght");
-        console.log(products.lenght);
+        let productsArray = JSON.parse(localStorage.getItem('products'));
+        let productsAmount = productsArray.length;
 
-        if(products.lenght >= 1)
+        if(productsAmount >= 1)
         {
-            alert('tem carrinho com produtos');
+            $('.shoppingCartAmount').html(productsAmount);
+        } else {
+            $('.shoppingCartAmount').html("0");
         } 
     }
 

@@ -93,9 +93,7 @@
 
                 alert("produto já adicionado ao carrinho");
             }
-
-            console.log("Produtos");
-            console.log(products);
+            
             activateCart();
         });
     </script>

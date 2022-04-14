@@ -61,4 +61,9 @@ class HomeController extends Controller
 
         return view('site.product.view',compact('product', 'productImages', 'page_title'));
     }
+
+    public function cart(): View
+    {
+        return view('site.cart.list');
+    }
 }

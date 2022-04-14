@@ -63,6 +63,7 @@
             'currency_symbol' => 'R$'
         ],
         'site' => [
+            'shopping_cart' => 'Carrinho de Compras',
             'add_to_cart' => 'Adicionar ao Carrinho',
             'purchase' => 'Comprar',
         ],
