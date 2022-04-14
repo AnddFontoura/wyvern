@@ -27,4 +27,5 @@ Route::prefix('subcategories')->group( function(){
 
 Route::prefix('products')->group( function(){
     Route::get('count','Api\ProductApiController@countProducts');
+    Route::get('get-by-multiple-id', 'Api\ProducApiController@getProducts');
 });

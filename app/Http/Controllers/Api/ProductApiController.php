@@ -15,4 +15,18 @@ class ProductApiController extends Controller
 
         return response()->json(['countProducts' => $countProducts], Response::HTTP_OK);
     }
+
+    public function getProducts(Request $request)
+    {
+        $this->validate($request, [
+            'productsId' => 'required|array'
+        ]);
+
+        $productsId = $this->get('productsId');
+        $products = Product::where('id', 'in', $productsId)
+            ->get()
+            ->toArray();
+
+        return response()->json($products, Response::HTTP_OK);
+    }
 }
