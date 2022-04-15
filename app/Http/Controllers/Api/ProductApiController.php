@@ -22,10 +22,14 @@ class ProductApiController extends Controller
             'productsId' => 'required|array'
         ]);
 
-        $productsId = $this->get('productsId');
-        $products = Product::where('id', 'in', $productsId)
+        $productsId = $request->get('productsId');
+        $products = Product::whereIn('id', $productsId)
             ->get()
             ->toArray();
+        
+        for($i = 0; $i < count($products); $i++) {
+            $products[$i]['price_formatted'] = number_format($products[$i]['price'], 2, __('basic.numerals.decimal_separator'), __('basic.numerals.thousand_separator'));
+        }
 
         return response()->json($products, Response::HTTP_OK);
     }
