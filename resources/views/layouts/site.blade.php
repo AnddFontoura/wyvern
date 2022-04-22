@@ -18,7 +18,7 @@
 <body>
     <div class="container ">
         <header class="d-flex flex-wrap justify-content-center py-3 border-bottom">
-            <div href="/" class="d-flex align-items-center mb-md-0 me-md-auto text-dark text-decoration-none">
+            <div href="{{ url('/') }}" class="d-flex align-items-center mb-md-0 me-md-auto text-dark text-decoration-none">
                 <svg class="bi me-2" width="40" height="32">
                     <use xlink:href="#bootstrap"></use>
                 </svg>

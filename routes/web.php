@@ -30,6 +30,13 @@ Route::prefix('product')->group( function() {
     Route::match(['post','get'],'{id}','HomeController@showProduct');
 });
 
+Route::middleware('auth')->prefix('user')->group(function () {
+
+    Route::prefix('cart')->group( function(){
+        Route::match(['post', 'get'], '/', 'CartController@checkout');
+    });
+});
+
 Route::middleware('auth')->prefix('admin')->group(function () {
 
     Route::match(['post', 'get'], '/', 'AdminController@index');

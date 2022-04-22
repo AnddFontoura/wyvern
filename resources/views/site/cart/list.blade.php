@@ -2,25 +2,53 @@
 
 @section('site_content')
 <div class="card">
-    <div class="card-body cart">
+    <form action="{{ url('user/cart') }}" method="POST">
+        <div class="card-body cart">
 
-    </div>
+        </div>
 
-    <div class="card-footer align-right">
-        <input type="submit" class="btn btn-success" value="Finalizar Compra"> </input>
-    </div>
+        <div class="card-footer align-right">
+            <input type="submit" class="btn btn-success createCart" value="Finalizar Compra"> </input>
+            <input type="button" class="btn btn-danger clearCart" value="Limpar Carrinho"> </input>
+        </div>
+    </form>
 </div>
 @endsection
 
 @section('page_js')
 <script>
-    $('.productQuantity').on('blur', function() {
-        alert('change');
-        let price = $(this).data('price');
-        let quantity = $(this).value;
+    $('.clearCart').on('click', function() {
 
-        alert(price * quantity);
-
+        Swal.fire({
+            title: '{{ __("basic.alert.attention") }}!',
+            text: '{{ __("basic.alert.about_to_delete_cart") }}',
+            icon: "warning",
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            confirmButtonText: '{{ __("basic.alert.yes_continue") }}'
+        }).then((result) => {
+            if (result.value) {
+                localStorage.removeItem('products');
+                Swal.fire({
+                        title: '{{ __("basic.ready") }}',
+                        text: '{{ __("basic.cart.cleared") }}',
+                        icon: 'success',
+                        buttons: true,
+                    })
+                    .then((buttonClick) => {
+                        if (buttonClick) {
+                            location.reload();
+                        }
+                    });
+            } else if (result.dismiss === 'cancel') {
+                Swal.fire(
+                    '{{ __("basic.canceled_operation") }}',
+                    '{{ __("basic.no_alteration_has_been_made") }}',
+                    'error'
+                )
+            }
+        });
     });
 
     $(document).ready(function() {
@@ -63,7 +91,13 @@
 
                     $(".cart").append(html);
                 });
+
             });
+        } else {
+            let html = "";
+            html += "<div class='alert alert-danger'> {{ __('basic.cart.no_products') }} </div>";
+            
+            $(".cart").append(html);
         }
     });
 </script>
